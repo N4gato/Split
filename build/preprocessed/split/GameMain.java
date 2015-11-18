@@ -146,6 +146,8 @@ class GameMain extends GameCanvas implements Runnable {
         goku.setPosition(gokuXCenter , gokuYCenter);
         goku.paint(g);
         goku.setFrame(0);
+        flushGraphics();
+        
             
  
          // Game loop
@@ -178,7 +180,24 @@ class GameMain extends GameCanvas implements Runnable {
                }
                goku.setTransform(Sprite.TRANS_NONE);
             } else if ((keyState & UP_PRESSED) != 0) {
-               gokuYCenter -=3;
+               
+                //gokuUpDown.setPosition(gokuXCenter, gokuYCenter);
+                //gokuUpDown.paint(g);
+                //gokuUpDown.setFrame(0);
+                //flushGraphics();
+                
+                //try {
+                  //  Thread.sleep(50);
+                //} catch (Exception ex) {}
+                //   g.setColor(0x007fcf);
+                //g.fillRect(0, 0, canvasWidth, canvasHeight);
+                gokuYCenter -=9;
+                
+                if(gokuYCenter < gokuYMin){
+                    gokuYCenter=gokuYMin;
+                //break;
+                }
+                
                 
                goku.setTransform(Sprite.TRANS_NONE);
              } else if ((keyState & LEFT_PRESSED) != 0) {
@@ -208,7 +227,7 @@ class GameMain extends GameCanvas implements Runnable {
                goku.setTransform(Sprite.TRANS_MIRROR);
                goku.setTransform(Sprite.TRANS_MIRROR);
             } else if ((keyState & DOWN_PRESSED) != 0) {
-               gokuYCenter += Speed;
+               gokuYCenter += 9;
                if (gokuYCenter > gokuYMax) {
                   gokuYCenter = gokuYMax;
                }
@@ -269,8 +288,8 @@ class GameMain extends GameCanvas implements Runnable {
                 } catch (Exception ex) {}
             }
  
-            g.setColor(0x007fcf);
-            g.fillRect(0, 0, canvasWidth, canvasHeight);
+           g.setColor(0x007fcf);
+           g.fillRect(0, 0, canvasWidth, canvasHeight);
  
             // Draw the sprites
             goku.setPosition(gokuXCenter , gokuYCenter);
@@ -285,10 +304,10 @@ class GameMain extends GameCanvas implements Runnable {
             //hasCollided = goku.collidesWith(ghost, true);
  
             // Display info
-            g.setColor(0xffffff);
-            g.fillRect(0, 0, canvasWidth, INFO_AREA_HEIGHT);
-            g.setColor(0x000000);
-            g.drawString("(" + gokuXCenter + "," + gokuYCenter + ")", 4, 0, Graphics.TOP | Graphics.LEFT);
+            //g.setColor(0xffffff);
+            //g.fillRect(0, 0, canvasWidth, INFO_AREA_HEIGHT);
+            //g.setColor(0x000000);
+            //g.drawString("(" + gokuXCenter + "," + gokuYCenter + ")", 4, 0, Graphics.TOP | Graphics.LEFT);
             //if (hasCollided) {
               // g.setColor(0xff0000);
                //g.drawString("Collided", canvasWidth / 2, 0, Graphics.TOP | Graphics.LEFT);
